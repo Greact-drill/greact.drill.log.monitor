@@ -1,0 +1,358 @@
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: #242424;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid #333;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: -webkit-linear-gradient(45deg, #a73cff, #f961d2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+p {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+}
+
+.log-list-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: #242424;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border: 1px solid #333;
+}
+
+/* Scrollbar styling */
+.log-list-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.log-list-container::-webkit-scrollbar-track {
+  background: #2b2b2b;
+}
+
+.log-list-container::-webkit-scrollbar-thumb {
+  background: #505050;
+  border-radius: 5px;
+}
+
+.log-list-container::-webkit-scrollbar-thumb:hover {
+  background: #606060;
+}
+
+.log-entry {
+  padding: 15px;
+  border-bottom: 1px solid #3a3a3a;
+  transition: all 0.3s ease;
+}
+
+.log-entry:hover {
+  background-color: #2b2b2b;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+/* .log-entry-new {
+  animation: new-log-highlight 1s forwards;
+} */
+
+/* @keyframes new-log-highlight {
+  from {
+    background-color: rgba(88, 166, 255, 0.2);
+  }
+  to {
+    background-color: transparent !important;
+  }
+} */
+
+.log-list-container.clearing-logs {
+  animation: fadeOutAndShrink 0.5s ease-out forwards;
+}
+
+@keyframes fadeOutAndShrink {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Sidebar menu styling */
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  left: -330px; /* Изначально скрываем, оставляя место для ручки */
+  width: 300px;
+  height: 100%;
+  transition: left 0.3s ease-in-out;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+/* Menu handle that peeks out */
+.menu-handle {
+  position: absolute;
+  right: -90px; /* Позиционируем ручку справа от контейнера меню */
+  top: 20px;
+  width: 50px;
+  height: 100px;
+  background-color: #2b2b2b;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #3a3a3a;
+  border-left: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-text {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transform: rotate(90deg);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+/* Main menu content */
+.menu-content-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2b2b2b;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-right: 1px solid #3a3a3a;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #3a3a3a;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.menu-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #e0e0e0;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: center;
+}
+
+/* Раскрываем меню при наведении на родительский элемент */
+.sidebar-menu:hover {
+  left: 0;
+}
+
+/* Animate the handle on hover */
+.sidebar-menu:hover .menu-handle {
+  background: linear-gradient(90deg, #a73cff, #f961d2);
+  box-shadow: 0 0 15px rgba(167, 60, 255, 0.5);
+}
+
+/* Изменение цвета текста при наведении */
+.sidebar-menu:hover .menu-text {
+  color: white;
+}
+
+/* Styling for buttons with consistent gradient */
+.clear-button,
+.pause-button,
+.export-button,
+.display-toggle-button {
+  background: linear-gradient(45deg, #a73cff, #f961d2);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  width: 100%;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.clear-button:hover,
+.pause-button:hover,
+.export-button:hover,
+.display-toggle-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.clear-button:active,
+.pause-button:active,
+.export-button:active,
+.display-toggle-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjusting menu item spacing */
+.menu-item + .menu-item {
+  margin-top: 15px;
+}
+
+/* Styling for search input */
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #3a3a3a;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+/* Styling for log entry header */
+.log-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.log-timestamp {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #9cdcfe;
+  padding-right: 15px;
+  min-width: 90px;
+}
+
+.log-divider {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #3a3a3a;
+}
+
+/* Styling for log counter container */
+.log-count-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Styling for log counter */
+.log-count {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+/* Styling for log status */
+.log-entry.status-error {
+  border-left: 5px solid #ff4d4f;
+  background-image: linear-gradient(to right, rgba(255, 77, 79, 0.2), transparent);
+}
+
+.log-entry.status-warning {
+  border-left: 5px solid #faad14;
+  background-image: linear-gradient(to right, rgba(250, 173, 20, 0.2), transparent);
+}
+
+.log-entry.status-success {
+  border-left: 5px solid #52c41a;
+  background-image: linear-gradient(to right, rgba(82, 196, 26, 0.2), transparent);
+}
+
+/* Styling for display mode toggle button */
+.display-toggle-button {
+  background: linear-gradient(45deg, #a73cff, #f961d2);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  width: 100%;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.display-toggle-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.display-toggle-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); /* Можно настроить, чтобы записи "выплывали" снизу или сверху */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Применяем анимацию к каждой новой записи */
+.log-entry-new {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
