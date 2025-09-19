@@ -43,7 +43,7 @@ docker-compose up -d --build
 Создайте файл `.env`:
 
 ```env
-REACT_APP_LOG_API_URL=https://drill.greact.ru/api/log
+VITE_APP_LOG_API_URL=https://drill.greact.ru/api/log
 ```
 
 ## Docker

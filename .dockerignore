@@ -8,10 +8,6 @@ dist
 # Логи
 logs
 *.log
-
-# dotenv environment variables file
-.env
-
 # Git
 .git
 .gitignore

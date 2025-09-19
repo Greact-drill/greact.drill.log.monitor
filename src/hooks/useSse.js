@@ -1,7 +1,7 @@
 // frontend/src/hooks/useSse.js
 import { useState, useEffect, useRef } from 'react';
 
-const logApiUrl = process.env.REACT_APP_LOG_API_URL;
+const logApiUrl = import.meta.env.VITE_APP_LOG_API_URL;
 
 const useSse = () => {
   const [message, setMessage] = useState(null);
