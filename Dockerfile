@@ -12,8 +12,7 @@ COPY package*.json ./
 # Устанавливаем зависимости
 RUN npm install --legacy-peer-deps
 
-# Копируем исходный код
-COPY . .
+COPY  . .
 
 # Собираем приложение для продакшена
 RUN npm run build
