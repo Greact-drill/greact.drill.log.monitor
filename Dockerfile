@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Устанавливаем зависимости
-RUN npm ci --only=production --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
 # Копируем исходный код
 COPY . .
