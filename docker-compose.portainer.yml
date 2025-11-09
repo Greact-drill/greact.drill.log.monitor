@@ -1,10 +1,11 @@
 services:
-  monitor-frontend:
+  monitor:
     build:
       context: .
       dockerfile: Dockerfile
     expose:
       - "80"
+    container_name: greact-drill-monitor-${BRANCH}
     environment:
       - NODE_ENV=production
       - VITE_APP_LOG_API_URL=${VITE_APP_LOG_API_URL}
@@ -13,4 +14,4 @@ services:
 
 networks:
   proxy:
-    external: true  
+    external: true
